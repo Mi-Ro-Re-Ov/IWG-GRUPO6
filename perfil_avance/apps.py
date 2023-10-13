@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AppTemperaturaConfig(AppConfig):
+class PerfilAvanceConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'app_temperatura'
+    name = 'perfil_avance'
