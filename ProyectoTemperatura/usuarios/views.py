@@ -5,6 +5,7 @@ from django.contrib.auth import logout
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.http import HttpResponse
+from registros.models import RegistroAgua, RegistroBloqueador, RegistroRopa
 from .models import PerfilUsuario
 from registros.forms import RegistroAguaForm, RegistroRopaForm, RegistroBloqueadorForm
 from .forms import PerfilUsuarioForm, RegistroUsuarioForm
@@ -23,18 +24,21 @@ def home(request):
         if form_agua.is_valid():
             agua_instance = form_agua.save(commit=False)
             agua_instance.perfil_usuario = request.user.perfil_usuario
+            agua_instance.usuario = request.user
             agua_instance.save()
             messages.success(request, "Registro de agua guardado correctamente")
 
         if form_ropa.is_valid():
             ropa_instance = form_ropa.save(commit=False)
-            agua_instance.perfil_usuario = request.user.perfilusuario
+            ropa_instance.perfil_usuario = request.user.perfil_usuario
+            ropa_instance.usuario = request.user
             ropa_instance.save()
             messages.success(request, "Registro de ropa guardado correctamente")
 
         if form_bloqueador.is_valid():
             bloqueador_instance = form_bloqueador.save(commit=False)
-            bloqueador_instance.perfil_usuario = request.user.perfilusuario
+            bloqueador_instance.perfil_usuario = request.user.perfil_usuario
+            bloqueador_instance.usuario = request.user
             bloqueador_instance.save()
             messages.success(request, "Registro de bloqueador guardado correctamente")
     return render(request, 'home.html', data)
@@ -61,6 +65,12 @@ def mas_opciones(request):
 @login_required
 def perfil(request):
     data = {'form': PerfilUsuarioForm}
+
+    user = request.user
+    agua_registros = user.perfil_usuario.registroagua_set.all()
+    ropa_registros = user.perfil_usuario.registroropa_set.all()
+    bloqueador_registros = user.perfil_usuario.registrobloqueador_set.all()
+
     if request.method == 'POST':
         formulario = PerfilUsuarioForm(data=request.POST)
         if formulario.is_valid():
@@ -68,6 +78,9 @@ def perfil(request):
             data['mensaje'] = "datos guardados"
         else:
             data['form'] = formulario
+    data['agua_registros'] = agua_registros
+    data['ropa_registros'] = ropa_registros
+    data['bloqueador_registros'] = bloqueador_registros
     return render(request, 'perfil.html', data)
 
 # class PerfilView(View):

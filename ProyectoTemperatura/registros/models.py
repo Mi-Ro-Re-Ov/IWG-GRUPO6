@@ -1,5 +1,6 @@
 # registros/models.py
 from django.db import models
+from django.contrib.auth.models import User
 from usuarios.models import PerfilUsuario
 
 class RegistroAgua(models.Model):
@@ -11,6 +12,12 @@ class RegistroAgua(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     cantidad_unidades = models.IntegerField()
     tipo_agua = models.CharField(max_length=1, choices=TIPO_CHOICES)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.usuario:
+            self.usuario = self.perfil_usuario.usuario
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Registro de Agua - {self.perfil_usuario.usuario.username} - {self.fecha}"
@@ -30,8 +37,14 @@ class RegistroBloqueador(models.Model):
     OPCIONES_CONFIRMACION_BLOQUEADOR = [(SI, 'Sí'), (NO, 'No')]
 
     perfil_usuario = models.ForeignKey(PerfilUsuario, on_delete=models.CASCADE)
-    confirmacion_bloqueador = models.CharField(max_length=1, choices=OPCIONES_CONFIRMACION_BLOQUEADOR, blank=False, null=True)
+    confirmacion_bloqueador = models.CharField(max_length=1, choices=OPCIONES_CONFIRMACION_BLOQUEADOR, blank=True, null=True)
     fecha = models.DateTimeField(auto_now_add=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.usuario:
+            self.usuario = self.perfil_usuario.usuario
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Registro de Bloqueador - {self.perfil_usuario.usuario.username} - {self.fecha}"
@@ -44,6 +57,12 @@ class RegistroRopa(models.Model):
     perfil_usuario = models.ForeignKey(PerfilUsuario, on_delete=models.CASCADE)
     confirmacion_ropa = models.CharField(max_length=1, choices=OPCIONES_CONFIRMACION_ROPA)
     fecha = models.DateTimeField(auto_now_add=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.usuario:
+            self.usuario = self.perfil_usuario.usuario
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Registro de Ropa - {self.perfil_usuario.usuario.username} - {self.fecha}"
