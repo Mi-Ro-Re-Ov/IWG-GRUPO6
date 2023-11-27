@@ -1,0 +1,193 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('https://media.discordapp.net/attachments/1139646703243362478/1162486888142213170/hermoso-arbol-medio-campo-cubierto-hierba-linea-arboles-fondo_181624-29267.png?ex=653c1d48&is=6529a848&hm=31466f4400c1d19706b75771eaeec0735c1f815ed0f7fd319759e672c00f2aae&=');
+    background-size: cover;
+}
+
+.container-form {
+    display: flex;
+    height: 500px;
+    max-width: 900px;
+    border-radius: 40px;
+    box-shadow: 0px 5px 7px rgba(39, 37, 36, 0.774);
+    transition: all 1s ease;
+    margin: 10px;
+}
+
+.information {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(20, 16, 7, 0.747);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.inforchilds {
+    width: 100%;
+    padding: 0px 30px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+}
+
+.inforchilds h2 {
+    font-size: 2rem;
+    color: #0f0f0f;
+}
+
+.inforchilds p {
+    font-size: 1rem;
+    margin: 15px 0;
+    color: #a7a7a7;
+}
+
+.inforchilds input {
+    background-color: #494848;
+    outline: none;
+    border: solid 2px #525255;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: #f1f1f1;
+    cursor: pointer;
+    transition: backround-color .3s ease;
+}
+
+.inforchilds input:hover {
+    background-color: #3f3c33d7;
+    border: none;
+    color: antiquewhite;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, .1);
+}
+.form-information {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(240, 255, 255, 0.678);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 60%;
+    justify-content: center;
+}
+
+.form-information-childs {
+    padding: 0px 30px;
+}
+
+.form-information-childs h2 {
+    color: rgba(0, 0, 0, 0.692);
+    font-size: 2rem;
+}
+
+.form-information-childs p {
+    color: #555;
+}
+
+.iconos {
+    margin: 15px 0;
+}
+
+.iconos i{
+    border-radius: 60%;
+    padding: 15px;
+    cursor: pointer;
+    margin: 0 10px;
+    color: #9191bd;
+    border: solid thin #9191bd;
+    transition: backround-colour 0.3s ease;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, .1);
+}
+
+.iconos i:hover {
+    background-color: #c7c7f3;
+    color: #fff
+}
+
+.form {
+    max-width: 400px;
+    margin: 0 auto
+}
+
+.form input{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form label input {
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    color: #333;
+}
+.form label i {
+    color: #a7a7a7;
+}
+
+.form input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+}
+
+.form input[type="submit"]:hover {
+    background-color: #7a7a9a;
+}
+
+.hide {
+    position: absolute;
+    transform: translateY(-300%);
+}
+
+/*RESPONSIVE FORM*/
+
+@media screen and (max-width:750px) {
+    html {
+        font-size: 12px;
+    }
+} 
+
+@media screen and (max-width:580) {
+    html {
+        font-size: 10px;
+    }
+    .container {
+        height: auto;
+        flex-direction: column;
+    }
+    .information {
+        padding: 20px;
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 20px;
+        width: 100%;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    .form-information {
+        padding: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+    }
+}
