@@ -1,0 +1,7 @@
+<h1>Registro</h1>
+<h2>Registro de Agua</h2>
+<form action="{% url 'registro' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registrarse</button>
+</form>
