@@ -1,0 +1,7 @@
+<h1>Mi perfil</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" enctype="multipart/form-data">Guardar cambios</button>
+</form>
+<a href="{% url 'home' %}">Volver a Home</a>

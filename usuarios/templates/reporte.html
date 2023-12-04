@@ -1,0 +1,28 @@
+{% block content %}
+<h1>Reporte</h1>
+<a href="{% url 'home' %}">Volver a Home</a>
+
+<h2>Tus reportes de agua</h2>
+<ul>
+    {% for reporte in reportes_agua %}
+    <p>{{ reporte.tipo_agua }} - {{ reporte.fecha }} - {{ reporte.cantidad_unidades }} - {{ reporte.nombre_usuario }}</p>
+    {% endfor %}
+</ul>
+
+
+<h2>Tus reportes de bloqueador</h2>
+<ul>
+    {% for reporte in reportes_bloqueador %}
+        <p>{{ reporte.confirmacion_bloqueador }} - {{ reporte.fecha }} - {{ reporte.nombre_usuario }}</p>
+    {% endfor %}
+</ul>
+
+
+<h2>Tus reportes de ropa</h2>
+<ul>
+    {% for reporte in reportes_ropa %}
+        <p>{{ reporte.confirmacion_ropa }} - {{ reporte.fecha }} - {{ reporte.nombre_usuario }}</p>
+    {% endfor %}
+</ul>
+
+{% endblock %}
