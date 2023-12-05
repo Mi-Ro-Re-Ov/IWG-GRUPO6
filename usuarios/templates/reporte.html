@@ -8,6 +8,8 @@
     <p>{{ reporte.tipo_agua }} - {{ reporte.fecha }} - {{ reporte.cantidad_unidades }} - {{ reporte.nombre_usuario }}</p>
     {% endfor %}
 </ul>
+<p>Total de vasos de agua: {{ reportes_agua|length }}</p>
+<p>Total de botellas de agua: {{ reportes_agua|length }}</p>
 
 
 <h2>Tus reportes de bloqueador</h2>
@@ -16,6 +18,7 @@
         <p>{{ reporte.confirmacion_bloqueador }} - {{ reporte.fecha }} - {{ reporte.nombre_usuario }}</p>
     {% endfor %}
 </ul>
+<p>Total de reportes de bloqueador: {{ reportes_bloqueador|length }}</p>
 
 
 <h2>Tus reportes de ropa</h2>
@@ -24,5 +27,6 @@
         <p>{{ reporte.confirmacion_ropa }} - {{ reporte.fecha }} - {{ reporte.nombre_usuario }}</p>
     {% endfor %}
 </ul>
+<p>Total de reportes de ropa: {{ reportes_ropa|length }}</p>
 
 {% endblock %}

@@ -6,7 +6,7 @@ from django.conf import settings
 class RegistroAgua(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     fecha = models.DateTimeField(auto_now_add=True)
-    cantidad_unidades = models.PositiveIntegerField()
+    cantidad_unidades = models.PositiveIntegerField(default=1)
     AGUA_CHOICES = [
         ('V', 'Vasos'),
         ('B', 'Botellas'),
