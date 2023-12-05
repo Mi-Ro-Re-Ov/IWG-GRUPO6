@@ -15,10 +15,15 @@ from .models import UsuarioCustom
 from registros.forms import AguaForm, RopaForm, BloqueadorForm
 from registros.models import RegistroAgua, RegistroRopa, RegistroBloqueador
 from django.db.models import Count
+# from recomendaciones.views import combined_view as vista_recomendaciones
+# from recomendaciones.models import recomendaciones
 
 # Create your views here.
 @login_required
 def home(request):
+
+    # variable_vista_recomendaciones = vista_recomendaciones(request)
+
     if request.method == 'POST':
         if 'agua_form' in request.POST:
             form = AguaForm(request.POST)

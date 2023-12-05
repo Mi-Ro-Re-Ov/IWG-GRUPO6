@@ -1,7 +1,36 @@
-<h1>Mi perfil</h1>
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" enctype="multipart/form-data">Guardar cambios</button>
-</form>
-<a href="{% url 'home' %}">Volver a Home</a>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Perfil</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+        <!--.css asociado: "style3.css"-->
+    </head>
+    <body>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <a href="{% url 'home' %}">
+                <img class="house" alt="" src="https://static.vecteezy.com/system/resources/previews/010/159/780/non_2x/house-symbol-and-home-icon-sign-design-free-png.png">
+            </a>
+            <label class="logo">Datos de Perfil</label>
+        </nav>
+        <section>
+            <div class="CuadroDatos">
+                <!--Aquí arriba también pueden ir tus códigos pero el <hr> de entre medio crea una linea de separación-->
+                <h1>Mi perfil</h1>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" enctype="multipart/form-data">Guardar cambios</button>
+                </form>
+                <hr>
+                <!--Aquí poner tus códigos-->
+            </div>
+        </section>
+    </body>
+</html>
