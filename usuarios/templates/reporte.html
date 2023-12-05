@@ -9,6 +9,8 @@
     {% endfor %}
 </ul>
 
+<h3>Cantidad total de registros de vasos de agua: {{ total_vasos_agua }}</h3>
+<h3>Cantidad total de registros de botellas de agua: {{ total_botellas_agua }}</h3>
 
 <h2>Tus reportes de bloqueador</h2>
 <ul>
@@ -16,7 +18,7 @@
         <p>{{ reporte.confirmacion_bloqueador }} - {{ reporte.fecha }} - {{ reporte.nombre_usuario }}</p>
     {% endfor %}
 </ul>
-
+<h3>Cantidad total de registros de bloqueador: {{ total_bloqueador }}</h3>
 
 <h2>Tus reportes de ropa</h2>
 <ul>
@@ -24,5 +26,6 @@
         <p>{{ reporte.confirmacion_ropa }} - {{ reporte.fecha }} - {{ reporte.nombre_usuario }}</p>
     {% endfor %}
 </ul>
+<h3>Cantidad total de registros de ropa: {{ total_ropa }}</h3>
 
 {% endblock %}
