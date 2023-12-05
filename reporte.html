@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">  
+    <head>
+        <meta charset="UTF-8">
+        <title>Perfil</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/reporte.css'%}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <a href="home.html">
+            <img class="house" alt="" src="https://static.vecteezy.com/system/resources/previews/010/159/780/non_2x/house-symbol-and-home-icon-sign-design-free-png.png">
+        </a>
+    </nav>
+    <div class="container-form">
+        <div class="Profile">
+            {% block content %}
+            <h1>Reporte</h1>
+        </div>
+        <div class="formulario">
+            <div class="formulario1">
+                <h2>Tus reportes de agua</h2>
+                <ul>
+                {% for reporte in reportes_agua %}
+                <p>{{ reporte.tipo_agua }} - {{ reporte.fecha }} - {{ reporte.cantidad_unidades }} - {{ reporte.nombre_usuario }}</p>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="formulario2">
+                <h2>Tus reportes de bloqueador</h2>
+                <ul>
+                {% for reporte in reportes_bloqueador %}
+                <p>{{ reporte.confirmacion_bloqueador }} - {{ reporte.fecha }} - {{ reporte.nombre_usuario }}</p>
+                {% endfor %}
+                </ul>                   
+            </div>
+            <div class="formulaio3">
+                <h2>Tus reportes de ropa</h2>
+                <ul>
+                {% for reporte in reportes_ropa %}
+                <p>{{ reporte.confirmacion_ropa }} - {{ reporte.fecha }} - {{ reporte.nombre_usuario }}</p>
+                {% endfor %}
+                </ul>
+                {% endblock %} 
+            </div>
+        </div>
+        <a href="{% url 'home' %}">Volver a Home</a>
+    </div>
+
+
