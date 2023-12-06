@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.urls import path
-from .views import reporte, mostrar_contador
+from registros.views import reporte, mostrar_contador
 
 urlpatterns = [
     path('reporte/', reporte, name='reporte'),

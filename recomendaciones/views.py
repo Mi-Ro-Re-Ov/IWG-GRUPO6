@@ -9,7 +9,7 @@ from recomendaciones.forms import CantidadForm
 def combined_view(request):
     current_user = request.user
 
-    user_recommendations = recomendaciones.objects.filter(usuario=current_user, completado=False)
+    user_recommendations = recomendaciones.objects.filter()
 
     if not user_recommendations.exists():
         return render(request, 'combined_view.html', {'error_message': 'No hay recomendaciones pendientes.'})

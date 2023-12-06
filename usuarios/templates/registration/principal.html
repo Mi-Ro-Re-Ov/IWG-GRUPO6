@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
         <meta charset="UTF-8">
         <title>¿Que nos ponemos hoy?</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style2.css">
+        <link rel="stylesheet" href="{% static 'css/principal.css' %}">
         <!--.css asociado: "style2.css"-->
     </head>
     <body>
@@ -15,9 +16,9 @@
             </label>
             <label class="logo">¡Bienvenido!</label>
             <ul class="menu-horizontal">
-                <li><a href="registros.html">Registros</a></li>
+                <li><a href="{% url 'reporte' %}">Registros</a></li>
                 <li>
-                    <a href="perfil.html">Perfil</a>
+                    <a href="{% url 'perfil' %}">Perfil</a>
                     <ul class="menu-vertical">
                         <li><a>Cerrar sesión</a></li>
                         <!--Aquí tienes que poner códgio para que cierre sesión-->
@@ -27,56 +28,53 @@
         </nav>
         <section>
             <div class="cuadro-1">
-                <h3>¿Cuánta agua has bebido hoy?</h3>
-                <img class="pequeña" src="https://img.freepik.com/vector-gratis/vaso-agua-etiqueta-engomada-sobre-fondo-blanco_1308-76439.jpg?size=626&ext=jpg&ga=GA1.1.386372595.1697673600&semt=ais" />
-                <input class="ingreso">
-                <!--El input "ingreso" es el recuadro de los vasos con agua-->
-                <img class="pequeña2" src="https://cdn-icons-png.flaticon.com/512/6042/6042927.png" >
-                <input class="ingreso2">
-                <!--El input "ingreso2" es el recuadro de las botellas con agua-->
-                <h5 class="sangria">¿Estás utilizando la cantidad de bloqueador recomendado?</h5>
-                <h5 class="sangria2">¿Estás utilizando la ropa recomendada?</h5>
-                <img class="mediana" src="https://cdn-icons-png.flaticon.com/512/1414/1414947.png">
-                <div class="polera">
-                    <img class="mediana2" src="https://images.vexels.com/media/users/3/178127/isolated/preview/598c4b5604ac198be579e04f8da5565b-camiseta.png">
-                </div>
                 <br>
-                <div class="boton">
-                    <input type="checkbox" id="btn-switch">
-                    <label for="btn-switch" class="lbl-switch"></label>
-                    <!--Botón del bloqueador solar/booleano-->
+                <div class="ingreso">
+                    <form action="{% url 'principal' %}" method="post">
+                        {% csrf_token %}
+                        {{ agua_form.as_table }} 
+                        <button type="submit" name="agua_form">Guardar registro</button>
+                    </form>
                 </div>
+                
+                <br>
+                <br>
+                <br>
+                
+                <div class="boton">
+                    <form action="{% url 'principal' %}" method="post">
+                        {% csrf_token %}
+                        {{ bloqueador_form.as_table }}
+                        <button type="submit" name="bloqueador_form">Guardar registro</button>
+                    </form>
+                </div>
+                
 
                 <div class="boton2">
-                    <input type="checkbox" id="btn-switch2">
-                    <label for="btn-switch2" class="lbl-switch2"></label>
-                    <!--Botón de la polera/booleano-->
+                    <form action="{% url 'principal' %}" method="post">
+                        {% csrf_token %}
+                        {{ ropa_form.as_table }}
+                        <button type="submit" name="ropa_form">Guardar registro</button>
+                    </form>
                 </div>
             </div>
             <div class="cuadro-2">
                 <h2>Insignias</h2>
-                <progress min="0" max="5" value="3"></progress>
+                <progress min="0" max="8" value="contador"></progress>
                 <!--este <progress> agrega la barra de progreso, puedes modificar el max según como se haya hecho
                 el trabajo y el value es el que se tiene que asociar a la variable de cuantas lleva logradas el 
                 usuario-->
                 <br>
-                <h1>3/5</h1>
-                <h3>Recomendaciones:</h3>
-                <br>
-                <br>
-                <br>
+                <h3>Metas:</h3>
                 <!--Entre estos <br> poner las recomendaciones y despues borrar los <br>-->
-                <br>
-                <br>
-                <br>
-                <h3>Facts:</h3>
-                <!--Acá los Facts-->
+                {{ recomendaciones.info }}
+                <h4>Toma 150 vasos de agua.</h4>
             </div>
             <img class="grande" src="https://c0.klipartz.com/pngpicture/774/580/gratis-png-termometro-de-sala-de-arte-temperatura-del-termometro-termometro.png">
             <div class="datostemp">
                 <h5>temperatura:</h5>
-                <div id="nombre"></div>
                 <!--Aquí tendría que ir la variable de la temperatura sacada con la api de python-->
+                {{ temperatura }}
             </div>
         </section>
     </body>

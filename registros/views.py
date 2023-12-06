@@ -73,4 +73,10 @@ def mostrar_contador(request):
     total_bloqueador = RegistroBloqueador.objects.filter(usuario=usuario).count()
     total_ropa = RegistroRopa.objects.filter(usuario=usuario).count()
 
+    print(f"Total Vasos: {total_vasos}")
+    print(f"Total Botellas: {total_botellas}")
+    print(f"Total Bloqueador: {total_bloqueador}")
+    print(f"Total Ropa: {total_ropa}")
+
+
     return total_vasos, total_botellas, total_bloqueador, total_ropa
