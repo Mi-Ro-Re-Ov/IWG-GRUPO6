@@ -1,1 +1,23 @@
-<h1>Combined View</h1>
+<!-- yourapp/templates/combined_view.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined View</title>
+</head>
+<body>
+
+    {% if recomendacion %}
+        <h1>Random Recommendation:</h1>
+        <p>{{ recomendacion }}</p>
+    {% endif %}
+
+    {% if error_message %}
+        <h1>Error:</h1>
+        <p>{{ error_message }}</p>
+    {% endif %}
+
+</body>
+</html>

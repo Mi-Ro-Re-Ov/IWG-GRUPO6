@@ -16,8 +16,9 @@ Including another URLconf
 """
 
 from django.urls import path
-from .views import reporte
+from .views import reporte, mostrar_contador
 
 urlpatterns = [
-    path('reporte/', reporte, name='reporte')
+    path('reporte/', reporte, name='reporte'),
+    path('mostrar_contador/', mostrar_contador, name='mostrar_contador')
 ]

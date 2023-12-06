@@ -1,3 +1,37 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/registro.css'%}">
+    <title>Registro</title>
+</head>
+    <body>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <a href="{% url 'login' %}" id="rettolog">
+                <img class="returntologin" alt="" src="https://i.pinimg.com/originals/35/b3/c1/35b3c1ecf233d242dc8d504203eebeec.png">
+            </a>
+            <h6 class="tamañotexto">Login</h6>
+        </nav>
+        <section>
+            <div class="cuadroregister">
+                {{ form|crispy }}
+            </div>
+        </section>
+        
+    </body>
+</html>
+
+
+
+
+
 <h1>Registro</h1>
 <h2>Registro de Agua</h2>
 <form action="{% url 'registro' %}" method="post">

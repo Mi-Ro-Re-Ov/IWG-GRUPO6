@@ -15,6 +15,7 @@ from .models import UsuarioCustom
 from registros.forms import AguaForm, RopaForm, BloqueadorForm
 from registros.models import RegistroAgua, RegistroRopa, RegistroBloqueador
 from django.db.models import Count
+from registros.views import mostrar_contador
 # from recomendaciones.views import combined_view as vista_recomendaciones
 # from recomendaciones.models import recomendaciones
 
@@ -114,6 +115,7 @@ def perfil(request):
 
 @login_required
 def reporte(request):
+    total_vasos_agua, total_botellas_agua, total_bloqueador, total_ropa = mostrar_contador(request)
     if request.method == "POST":
         if 'agua_form' in request.POST:
             form = AguaForm(request.POST)
@@ -143,16 +145,9 @@ def reporte(request):
         bloqueador_form = BloqueadorForm()
         ropa_form = RopaForm()
 
-
-
     reportes_agua = RegistroAgua.objects.filter(usuario=request.user)
     reportes_bloqueador = RegistroBloqueador.objects.filter(usuario=request.user)
     reportes_ropa = RegistroRopa.objects.filter(usuario=request.user)
-
-    total_vasos_agua = RegistroAgua.objects.filter(usuario=request.user, tipo_agua='V').count()
-    total_botellas_agua = RegistroAgua.objects.filter(usuario=request.user, tipo_agua='B').count()
-    total_bloqueador = RegistroBloqueador.objects.filter(usuario=request.user).count()
-    total_ropa = RegistroRopa.objects.filter(usuario=request.user).count()
 
     reportes_agua_data = [{'tipo_agua': r.tipo_agua, 'fecha': r.fecha, 'cantidad_unidades': r.cantidad_unidades, 'nombre_usuario': r.usuario.username} for r in reportes_agua]
     reportes_bloqueador_data = [{'confirmacion_bloqueador': r.confirmacion_bloqueador, 'fecha': r.fecha, 'nombre_usuario': r.usuario.username} for r in reportes_bloqueador]

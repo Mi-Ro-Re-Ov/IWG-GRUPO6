@@ -47,3 +47,7 @@ body {
     align-items: center;
     
 }
+
+.form-group input {
+    max-width: 300px;
+}

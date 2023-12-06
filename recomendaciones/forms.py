@@ -8,5 +8,7 @@ class CantidadForm(forms.ModelForm):
         fields = [
             'usuario',
             'vasos_cont',
-            'botellas_cont','ropa_cont'
+            'botellas_cont',
+            'bloqueador_cont',
+            'ropa_cont',
         ]

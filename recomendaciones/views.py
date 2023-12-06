@@ -1,12 +1,28 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 from django.http import HttpResponse
-from .models import recomendaciones, proxy
+from .models import cantidad_usuario, recomendaciones, proxy
 from usuarios.models import UsuarioCustom
+from recomendaciones.forms import CantidadForm
 
+@login_required
+def combined_view(request):
+    current_user = request.user
 
+    user_recommendations = recomendaciones.objects.filter(usuario=current_user, completado=False)
 
+    if not user_recommendations.exists():
+        return render(request, 'combined_view.html', {'error_message': 'No hay recomendaciones pendientes.'})
+
+    recomendacion_azar = user_recommendations.order_by('?').first()
+
+    recomendacion_azar.completado = True
+    recomendacion_azar.save()
+
+    contexto = {'recomendacion': recomendacion_azar}
+    return render(request, 'combined_view.html', contexto)
+
+'''
 @login_required
 def combined_view(request):
     current_user = request.user
@@ -44,10 +60,25 @@ def combined_view(request):
 
     else:
         return HttpResponse('Unsupported HTTP method')
+    '''
     
-    from django.shortcuts import render
-from recomendaciones.forms import CantidadForm
-from recomendaciones.models import cantidad_usuario
+    
+
+def contar_usuario(request):
+    cantidades = cantidad_usuario.objects.filter(usuario=request.user)
+
+    if request.method == "POST":
+        form = CantidadForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            form = CantidadForm()
+            return render(request, 'formulario.html', {'form': form})
+        
+    return HttpResponse('Unsupported HTTP method or invalid form submission')
+
+
+
 
 def contar_usuario(request):
    cantidades = cantidad_usuario.objects.filter(usuario=request.user)

@@ -27,5 +27,5 @@ urlpatterns = [
     path('logout/', views.logout_usuario, name="logout"),
     path('registro/', views.registro, name="registro"),
     path('perfil/', views.perfil, name="perfil"),
-    path('anadir_cont/', contar_usuario, name="anadir_cont"),
+    #path('anadir_cont/', contar_usuario, name="anadir_cont"),
 ]

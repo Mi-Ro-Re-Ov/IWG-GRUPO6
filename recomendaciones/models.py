@@ -14,6 +14,9 @@ class recomendaciones(models.Model):
     completado = models.BooleanField(null=True)
     usuario = models.ForeignKey(UsuarioCustom, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"Recomendación para {self.usuario.username} - {self.palabra_clave} - {self.numero}"
+
 class proxy(models.Model):
     vasos = models.IntegerField(default=10)
     botellas = models.IntegerField(default=10)
@@ -26,3 +29,6 @@ class cantidad_usuario(models.Model):
     botellas_cont = models.PositiveIntegerField()
     bloqueador_cont = models.PositiveIntegerField()
     ropa_cont = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"Cantidad para {self.usuario.username} - Vasos: {self.vasos_cont}, Botellas: {self.botellas_cont}, Bloqueador: {self.bloqueador_cont}, Ropa: {self.ropa_cont}"

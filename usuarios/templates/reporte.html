@@ -34,8 +34,8 @@
                 <p>{{ reporte.tipo_agua }} - {{ reporte.fecha }} - {{ reporte.cantidad_unidades }} - {{ reporte.nombre_usuario }}</p>
                 {% endfor %}
                 </ul>
-                <p>Total de vasos de agua: {{ reportes_agua|length }}</p>
-                <p>Total de botellas de agua: {{ reportes_agua|length }}</p>
+                <p>Total de vasos de agua: {{ total_vasos_agua }}</p>
+                <p>Total de botellas de agua: {{ total_botellas_agua }}</p>
             </div>
             <div class="formulario2">
                 <h2>Tus reportes de bloqueador</h2>
@@ -44,9 +44,7 @@
                 <p>{{ reporte.confirmacion_bloqueador }} - {{ reporte.fecha }} - {{ reporte.nombre_usuario }}</p>
                 {% endfor %}
                 </ul>
-                {% with total_reportes=reportes_bloqueador|length %}
-                <p>Total de reportes de bloqueador: {{ total_reportes }}</p>           
-                {% endwith %}        
+                <p>Total de reportes de bloqueador: {{ total_reportes }}</p>                
             </div>
             <div class="formulaio3">
                 <h2>Tus reportes de ropa</h2>
@@ -55,7 +53,7 @@
                 <p>{{ reporte.confirmacion_ropa }} - {{ reporte.fecha }} - {{ reporte.nombre_usuario }}</p>
                 {% endfor %}
                 </ul>
-                <p>Total de reportes de ropa: {{ reportes_ropa|length }}</p>
+                <p>Total de reportes de ropa: {{ reportes_ropa }}</p>
                 {% endblock %} 
             </div>
         </div>
