@@ -19,3 +19,10 @@ class proxy(models.Model):
     botellas = models.IntegerField(default=10)
     bloqueador = models.IntegerField(default=10)
     ropa = models.IntegerField(default=10)
+
+class cantidad_usuario(models.Model):
+    usuario = models.ForeignKey(UsuarioCustom, on_delete=models.CASCADE)
+    vasos_cont = models.PositiveIntegerField()
+    botellas_cont = models.PositiveIntegerField()
+    bloqueador_cont = models.PositiveIntegerField()
+    ropa_cont = models.PositiveIntegerField()

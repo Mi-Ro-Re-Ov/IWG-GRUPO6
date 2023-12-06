@@ -2,13 +2,13 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import recomendaciones, proxy
 from usuarios.models import UsuarioCustom
+
 
 
 @login_required
 def combined_view(request):
-    pass
-    '''
     current_user = request.user
 
     if request.method == 'GET':
@@ -44,4 +44,18 @@ def combined_view(request):
 
     else:
         return HttpResponse('Unsupported HTTP method')
-'''
+    
+    from django.shortcuts import render
+from recomendaciones.forms import CantidadForm
+from recomendaciones.models import cantidad_usuario
+
+def contar_usuario(request):
+   cantidades = cantidad_usuario.objects.filter(usuario=request.user)
+   if request.method == "POST":
+      form = CantidadForm(request.POST)
+
+      if form.is_valid():
+        form.save()
+        form= CantidadForm()
+        return render(request, "lformulario.html", {'form': form})
+      
